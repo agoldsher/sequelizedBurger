@@ -1,0 +1,26 @@
+{
+  "name": "sequelizedburger",
+  "version": "1.0.0",
+  "description": "the user can add burgers and devour them using sequelize",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/agoldsher/sequelizedBurger.git"
+  },
+  "author": "Anetta Goldsher",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/agoldsher/sequelizedBurger/issues"
+  },
+  "homepage": "https://github.com/agoldsher/sequelizedBurger#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.0",
+    "handlebars": "^4.1.0",
+    "mysql2": "^1.6.5",
+    "sequelize": "^4.42.0"
+  }
+}

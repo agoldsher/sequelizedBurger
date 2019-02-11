@@ -1,0 +1,76 @@
+<h1 class="text-center">Let's Eat Some Burgers!</h1>
+
+
+
+<div class="row text-center">
+    <div class="col">
+        <h2>Uneaten burgers</h2>
+        <div class="container">
+            {{#each burger_data}}
+            {{#unless this.devoured}}
+            <div class="row">
+                <div class="col bg-secondary text-white">
+                    <h5 class="pr-3 pl-3" style="line-height:4em">{{this.id}}. {{this.name}}</h5>
+                </div>
+                <div class="col bg-secondary text-white">
+                    <form style="" class="devour-form button-size">
+                        <input type="hidden" class="burger_id" type="text" value={{this.id}}><br>
+                        <button type="submit" class="btn btn-dark">Devour!</button>
+                    </form>
+                </div>
+            </div>
+            {{/unless}}
+            {{/each}}
+        </div>
+    </div>
+
+
+    <div class="col">
+        <h2>Eaten burgers</h2>
+
+        <div class="container">
+            {{#each burger_data}}
+            {{#if this.devoured}}
+            <h5 class="bg-light text-dark">{{this.id}}. {{this.name}}
+            </h5>
+            {{/if}}
+            {{/each}}
+
+        </div>
+
+    </div>
+</div>
+<div class="row pt-3">
+    <div class="col text-center">
+        <p>Type in the name of a burger you want to eat. Click submit to add it to the list.</p>
+    </div>
+</div>
+<div class="row">
+    <div class="mx-auto col-md-5">
+        <form action="/api/burgers" class="text-center" method="POST">
+            <input type="text" class="form-control" name="name" value="" id="enter_text">
+            <button type="submit" class="btn btn-dark mt-3" id="text-enter-button">Submit</button>
+        </form>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+
+        $(".devour-form").on("submit", function (event) {
+            event.preventDefault();
+
+            var burger_id = $(this).children(".burger_id").val();
+            console.log(burger_id);
+            $.ajax({
+                method: "PUT",
+                url: "/api/burgers/" + burger_id
+            }).then(function (data) {
+                location.reload();
+            });
+
+        });
+    });
+
+</script>
